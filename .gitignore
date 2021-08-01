@@ -1,0 +1,7 @@
+.idea
+Lyfe.sln.DotSettings.user
+**/bin
+**/obj
+**/appsettings.Development.json
+src/Lyfe/Lyfe.db
+src/Lyfe/ClientApp/node_modules

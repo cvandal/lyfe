@@ -1,0 +1,39 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.logo {
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+    height: 200px;
+}
+
+.logging-in {
+    margin: 16px 0 0 24px !important;
+}
+
+.flex-grow-1 {
+    flex-grow: 1;
+}
+
+.fixed-height-96 {
+    height: 96px;
+}
+
+.fixed-height-300 {
+    height: 300px;
+}
+
+.weight-difference {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 198px;
+}
