@@ -142,6 +142,6 @@ export default class Dashboard extends Component<Props, State> {
                     </Grid>
                 </Container>
             </div>
-        ): <Typography className="logging-in">Logging in...</Typography>;
+        ): <Typography className="loading">Logging in...</Typography>;
     };
 };

@@ -55,7 +55,7 @@ export default class Login extends Component<Props, State> {
 
     render () {
         if (!this.props.authState) {
-            return <Typography className="logging-in">Logging in...</Typography>;
+            return <Typography className="loading">Logging in...</Typography>;
         }
 
         return (
