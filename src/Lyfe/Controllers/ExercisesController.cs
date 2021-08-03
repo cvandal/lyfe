@@ -1,6 +1,4 @@
-using System;
 using System.Threading.Tasks;
-using Lyfe.Data;
 using Lyfe.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -38,7 +36,7 @@ namespace Lyfe.Controllers
         [HttpPost]
         public async Task<ActionResult<Exercise>> CreateExercise(Exercise exercise)
         {
-            if (await ExerciseExists(exercise.Name, exercise.DayOfWeek))
+            if (await ExerciseExists(exercise))
             {
                 _logger.LogWarning("An exercise with the name {ExerciseName} on {DayOfWeek} already exists.", exercise.Name, exercise.DayOfWeek.ToString());
                 return BadRequest();
@@ -82,9 +80,12 @@ namespace Lyfe.Controllers
             return NoContent();
         }
 
-        private async Task<bool> ExerciseExists(string name, DayOfWeek dayOfWeek)
+        private async Task<bool> ExerciseExists(Exercise exercise)
         {
-            return await _context.Exercises.AnyAsync(e => e.Name == name && e.DayOfWeek == dayOfWeek);
+            return await _context.Exercises.AnyAsync(e =>
+                e.UserId == exercise.UserId &&
+                e.Name == exercise.Name &&
+                e.DayOfWeek == exercise.DayOfWeek);
         }
     }
 }

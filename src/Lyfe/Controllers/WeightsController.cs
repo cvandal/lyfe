@@ -1,6 +1,4 @@
-using System;
 using System.Threading.Tasks;
-using Lyfe.Data;
 using Lyfe.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -38,7 +36,7 @@ namespace Lyfe.Controllers
         [HttpPost]
         public async Task<ActionResult<Weight>> CreateWeight(Weight weight)
         {
-            if (await WeightExists(weight.DateTime))
+            if (await WeightExists(weight))
             {
                 _logger.LogWarning("A weight with the date {DateTime} already exists.", weight.DateTime);
                 return BadRequest();
@@ -68,9 +66,11 @@ namespace Lyfe.Controllers
             return Ok(weight);
         }
 
-        private async Task<bool> WeightExists(DateTime dateTime)
+        private async Task<bool> WeightExists(Weight weight)
         {
-            return await _context.Weights.AnyAsync(w => w.DateTime.Date == dateTime.Date);
+            return await _context.Weights.AnyAsync(w =>
+                w.UserId == weight.UserId &&
+                w.DateTime.Date == weight.DateTime.Date);
         }
     }
 }
