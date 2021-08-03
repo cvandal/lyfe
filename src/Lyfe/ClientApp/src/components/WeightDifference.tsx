@@ -27,7 +27,7 @@ export default class WeightDifference extends Component<Props, State> {
 
     weightDifference = () => {
         const mostRecentWeight = this.mostRecentWeight();
-        return mostRecentWeight ? mostRecentWeight.currentWeight - mostRecentWeight.goalWeight : 0;
+        return mostRecentWeight ? (mostRecentWeight.currentWeight - mostRecentWeight.goalWeight).toFixed(2) : 0;
     }
 
     render () {
