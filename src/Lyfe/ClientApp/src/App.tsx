@@ -5,6 +5,7 @@ import {LoginCallback, SecureRoute, Security} from "@okta/okta-react";
 import {Layout} from "./components/Layout";
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
+import Logout from "./components/Logout";
 
 import "./style.css"
 
@@ -45,6 +46,9 @@ export default withRouter(class App extends Component<Props, State> {
                         <Login oktaAuth={this.oktaAuth} authState={this.oktaAuth.authStateManager.getAuthState()} />
                     </Route>
                     <Route path="/login/callback" component={LoginCallback} />
+                    <Route path="/logout">
+                        <Logout oktaAuth={this.oktaAuth} />
+                    </Route>
                 </Layout>
             </Security>
         );
