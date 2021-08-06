@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <Content Update="appsettings.Development.json" CopyToPublishDirectory="Never" />
+    <None Update="Lyfe.service" CopyToPublishDirectory="Always" />
   </ItemGroup>
 
 
