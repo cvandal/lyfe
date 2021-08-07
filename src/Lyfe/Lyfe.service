@@ -3,7 +3,7 @@ Description=Lyfe
 
 [Service]
 User=pi
-Environment=ASPNETCORE_URLS=https://*:5001
+Environment=ASPNETCORE_URLS=http://*:5000
 WorkingDirectory=/home/pi/Lyfe
 ExecStart=/home/pi/.dotnet/dotnet Lyfe.dll
 Restart=on-failure

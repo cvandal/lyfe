@@ -15,3 +15,4 @@ TBD
 7. https://github.com/okta/okta-react#usage
 8. https://github.com/okta/okta-react/issues/99
 9. https://hub.docker.com/r/datalust/seq
+10. https://docs.nginx.com/nginx/admin-guide/security-controls/securing-http-traffic-upstream/
