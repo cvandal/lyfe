@@ -1,3 +1,4 @@
+using Honeycomb.AspNetCore.Middleware;
 using Lyfe.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -37,6 +38,8 @@ namespace Lyfe
 
             services.AddDataProtection().SetApplicationName("Lyfe");
 
+            services.AddHoneycomb(Configuration);
+
             services.AddControllers();
 
             services.AddSpaStaticFiles(configuration =>
@@ -47,6 +50,8 @@ namespace Lyfe
 
         public static void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseHoneycomb();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

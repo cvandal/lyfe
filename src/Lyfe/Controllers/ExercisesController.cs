@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Honeycomb.AspNetCore;
 using Lyfe.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -14,11 +15,13 @@ namespace Lyfe.Controllers
     public class ExercisesController : ControllerBase
     {
         private readonly ILogger<ExercisesController> _logger;
+        private readonly IHoneycombEventManager _honeycombEventManager;
         private readonly DbContext _context;
 
-        public ExercisesController(ILogger<ExercisesController> logger, DbContext context)
+        public ExercisesController(ILogger<ExercisesController> logger, IHoneycombEventManager honeycombEventManager, DbContext context)
         {
             _logger = logger;
+            _honeycombEventManager = honeycombEventManager;
             _context = context;
         }
 
@@ -28,6 +31,8 @@ namespace Lyfe.Controllers
         {
             var exercise = await _context.Exercises.FindAsync(id);
             if (exercise == null) return NotFound();
+
+            _honeycombEventManager.AddData("get_exercise", exercise);
 
             return Ok(exercise);
         }
@@ -46,6 +51,8 @@ namespace Lyfe.Controllers
             await _context.Exercises.AddAsync(exercise);
             await _context.SaveChangesAsync();
 
+            _honeycombEventManager.AddData("create_exercise", exercise);
+
             return CreatedAtAction(nameof(GetExercise), new {id = exercise.Id}, exercise);
         }
 
@@ -63,6 +70,8 @@ namespace Lyfe.Controllers
             _context.Entry(exercise).State = EntityState.Modified;
             await _context.SaveChangesAsync();
 
+            _honeycombEventManager.AddData("update_exercise", exercise);
+
             return Ok(exercise);
         }
 
@@ -76,6 +85,8 @@ namespace Lyfe.Controllers
             _logger.LogInformation("Deleting exercise...", exercise);
             _context.Exercises.Remove(exercise);
             await _context.SaveChangesAsync();
+
+            _honeycombEventManager.AddData("delete_exercise", exercise);
 
             return NoContent();
         }

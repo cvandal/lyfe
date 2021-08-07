@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Lyfe.Data;
+using Honeycomb.AspNetCore;
 using Lyfe.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -16,11 +16,13 @@ namespace Lyfe.Controllers
     public class UsersController : ControllerBase
     {
         private readonly ILogger<UsersController> _logger;
+        private readonly IHoneycombEventManager _honeycombEventManager;
         private readonly DbContext _context;
 
-        public UsersController(ILogger<UsersController> logger, DbContext context)
+        public UsersController(ILogger<UsersController> logger, IHoneycombEventManager honeycombEventManager, DbContext context)
         {
             _logger = logger;
+            _honeycombEventManager = honeycombEventManager;
             _context = context;
         }
 
@@ -33,6 +35,8 @@ namespace Lyfe.Controllers
                 .Include(u => u.Exercises)
                 .SingleOrDefaultAsync(u => u.Id == id);
             if (user == null) return await CreateUser(id);
+
+            _honeycombEventManager.AddData("get_user", user);
 
             return Ok(user);
         }
@@ -57,6 +61,8 @@ namespace Lyfe.Controllers
             _logger.LogInformation("Creating user...", user);
             await _context.Users.AddAsync(user);
             await _context.SaveChangesAsync();
+
+            _honeycombEventManager.AddData("create_user", user);
 
             return CreatedAtAction(nameof(GetUser), new {id}, user);
         }

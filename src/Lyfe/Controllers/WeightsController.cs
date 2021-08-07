@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Honeycomb.AspNetCore;
 using Lyfe.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -14,11 +15,13 @@ namespace Lyfe.Controllers
     public class WeightsController : ControllerBase
     {
         private readonly ILogger<WeightsController> _logger;
+        private readonly IHoneycombEventManager _honeycombEventManager;
         private readonly DbContext _context;
 
-        public WeightsController(ILogger<WeightsController> logger, DbContext context)
+        public WeightsController(ILogger<WeightsController> logger, IHoneycombEventManager honeycombEventManager, DbContext context)
         {
             _logger = logger;
+            _honeycombEventManager = honeycombEventManager;
             _context = context;
         }
 
@@ -28,6 +31,8 @@ namespace Lyfe.Controllers
         {
             var weight = await _context.Weights.FindAsync(id);
             if (weight == null) return NotFound();
+
+            _honeycombEventManager.AddData("get_weight", weight);
 
             return Ok(weight);
         }
@@ -46,6 +51,8 @@ namespace Lyfe.Controllers
             await _context.Weights.AddAsync(weight);
             await _context.SaveChangesAsync();
 
+            _honeycombEventManager.AddData("create_weight", weight);
+
             return CreatedAtAction(nameof(GetWeight), new {id = weight.Id}, weight);
         }
 
@@ -62,6 +69,8 @@ namespace Lyfe.Controllers
             _logger.LogInformation("Updating weight...", weight);
             _context.Entry(weight).State = EntityState.Modified;
             await _context.SaveChangesAsync();
+
+            _honeycombEventManager.AddData("update_weight", weight);
 
             return Ok(weight);
         }
