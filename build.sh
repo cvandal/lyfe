@@ -48,7 +48,13 @@ prepare() {
 }
 
 test() {
-    :
+    pushd ./tests/Lyfe.Tests
+
+    cmd='dotnet test'
+    echo "Running $cmd..."
+    eval "$cmd"
+
+    popd
 }
 
 publish() {
