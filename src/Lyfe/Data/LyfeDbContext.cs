@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Lyfe.Data
 {
-    public class DbContext : Microsoft.EntityFrameworkCore.DbContext
+    public class LyfeDbContext : DbContext
     {
-        public DbContext(DbContextOptions<DbContext> options) : base(options)
+        public LyfeDbContext(DbContextOptions<LyfeDbContext> options) : base(options)
         {
         }
 

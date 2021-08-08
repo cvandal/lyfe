@@ -1,4 +1,5 @@
 using Honeycomb.AspNetCore.Middleware;
+using Lyfe.Data;
 using Lyfe.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -23,7 +24,7 @@ namespace Lyfe
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<Data.DbContext>(options =>
+            services.AddDbContext<LyfeDbContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
             var okta = Configuration.GetSection("Okta").Get<Okta>();

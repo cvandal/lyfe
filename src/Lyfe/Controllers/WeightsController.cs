@@ -1,11 +1,11 @@
 using System.Threading.Tasks;
 using Honeycomb.AspNetCore;
+using Lyfe.Data;
 using Lyfe.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using DbContext = Lyfe.Data.DbContext;
 
 namespace Lyfe.Controllers
 {
@@ -16,9 +16,9 @@ namespace Lyfe.Controllers
     {
         private readonly ILogger<WeightsController> _logger;
         private readonly IHoneycombEventManager _honeycombEventManager;
-        private readonly DbContext _context;
+        private readonly LyfeDbContext _context;
 
-        public WeightsController(ILogger<WeightsController> logger, IHoneycombEventManager honeycombEventManager, DbContext context)
+        public WeightsController(ILogger<WeightsController> logger, IHoneycombEventManager honeycombEventManager, LyfeDbContext context)
         {
             _logger = logger;
             _honeycombEventManager = honeycombEventManager;

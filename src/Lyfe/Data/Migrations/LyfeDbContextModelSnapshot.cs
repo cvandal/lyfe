@@ -7,8 +7,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Lyfe.Data.Migrations
 {
-    [DbContext(typeof(DbContext))]
-    partial class DbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(LyfeDbContext))]
+    partial class LyfeDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -50,6 +50,12 @@ namespace Lyfe.Data.Migrations
             modelBuilder.Entity("Lyfe.Models.User", b =>
                 {
                     b.Property<string>("Id")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("FamilyName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("GivenName")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

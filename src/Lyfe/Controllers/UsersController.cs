@@ -1,12 +1,11 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Honeycomb.AspNetCore;
+using Lyfe.Data;
 using Lyfe.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using DbContext = Lyfe.Data.DbContext;
 
 namespace Lyfe.Controllers
 {
@@ -17,16 +16,16 @@ namespace Lyfe.Controllers
     {
         private readonly ILogger<UsersController> _logger;
         private readonly IHoneycombEventManager _honeycombEventManager;
-        private readonly DbContext _context;
+        private readonly LyfeDbContext _context;
 
-        public UsersController(ILogger<UsersController> logger, IHoneycombEventManager honeycombEventManager, DbContext context)
+        public UsersController(ILogger<UsersController> logger, IHoneycombEventManager honeycombEventManager, LyfeDbContext context)
         {
             _logger = logger;
             _honeycombEventManager = honeycombEventManager;
             _context = context;
         }
 
-        // GET: api/users/00u1bmtbu1bjDnWOy5d7
+        // GET: api/users/abc123
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUser(string id)
         {
@@ -34,7 +33,7 @@ namespace Lyfe.Controllers
                 .Include(u => u.Weights)
                 .Include(u => u.Exercises)
                 .SingleOrDefaultAsync(u => u.Id == id);
-            if (user == null) return await CreateUser(id);
+            if (user == null) return NotFound();
 
             _honeycombEventManager.AddData("get_user", user);
 
@@ -43,20 +42,13 @@ namespace Lyfe.Controllers
 
         // POST: api/users
         [HttpPost]
-        public async Task<ActionResult<User>> CreateUser(string id)
+        public async Task<ActionResult<User>> CreateUser(User user)
         {
-            if (await UserExists(id))
+            if (await UserExists(user.Id))
             {
-                _logger.LogWarning("A user with the ID {ID} already exists.", id);
+                _logger.LogWarning("A user with the ID {ID} already exists.", user.Id);
                 return BadRequest();
             }
-
-            var user = new User
-            {
-                Id = id,
-                Weights = new List<Weight>(),
-                Exercises = new List<Exercise>()
-            };
 
             _logger.LogInformation("Creating user...", user);
             await _context.Users.AddAsync(user);
@@ -64,7 +56,7 @@ namespace Lyfe.Controllers
 
             _honeycombEventManager.AddData("create_user", user);
 
-            return CreatedAtAction(nameof(GetUser), new {id}, user);
+            return CreatedAtAction(nameof(GetUser), new {user.Id}, user);
         }
 
         private async Task<bool> UserExists(string id)

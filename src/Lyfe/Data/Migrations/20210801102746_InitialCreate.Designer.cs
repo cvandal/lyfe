@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Lyfe.Data.Migrations
 {
-    [DbContext(typeof(DbContext))]
+    [DbContext(typeof(LyfeDbContext))]
     [Migration("20210801102746_InitialCreate")]
     partial class InitialCreate
     {
