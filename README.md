@@ -17,10 +17,11 @@ Lyfe is a simple weight and exercise tracker written in .NET Core, React, and Ty
 1. Run `cd ./src/Lyfe/ClientApp`
 2. Run `npm install`
 3. Run `cd ..`
-4. Run `dotnet build`
-5. Run `export ASPNETCORE_ENVIRONMENT=Development`
-6. Run `dotnet run`
-7. Browse to [https://localhost:5001](https://localhost:5001)
+4. Copy `appsettings.json` to `appsettings.Development.json` and fill in all of the empty values.
+5. Run `dotnet build`
+6. Run `export ASPNETCORE_ENVIRONMENT=Development`
+7. Run `dotnet run`
+8. Browse to [https://localhost:5001](https://localhost:5001)
 
 ### Test
 
