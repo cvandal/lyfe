@@ -1,18 +1,34 @@
 # Lyfe
 
+Lyfe is a simple weight and exercise tracker written in .NET Core, React, and Typescript using Okta for authentication.
+
+![alt text](extras/screenshot.png "Lyfe")
+
 ## Getting Started
 
-TBD
+### Create a Database
 
-## Helpful URLs
+1. Run `dotnet tool install --global dotnet-ef`
+2. Run `cd ./src/Lyfe`
+3. Run `dotnet ef database update`
 
-1. https://github.com/serilog/serilog/wiki/Getting-Started
-2. https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/intro?view=aspnetcore-5.0
-3. https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/migrations?view=aspnetcore-5.0
-4. https://developer.okta.com/docs/guides/sign-into-mobile-app/react-native/get-user-info/
-5. https://developer.okta.com/blog/2020/07/29/entity-framework-core-api
-6. https://developer.okta.com/code/react/okta_react/#create-a-custom-sign-in-form
-7. https://github.com/okta/okta-react#usage
-8. https://github.com/okta/okta-react/issues/99
-9. https://hub.docker.com/r/datalust/seq
-10. https://docs.nginx.com/nginx/admin-guide/security-controls/securing-http-traffic-upstream/
+### Build and Run
+
+1. Run `cd ./src/Lyfe/ClientApp`
+2. Run `npm install`
+3. Run `cd ..`
+4. Run `dotnet build`
+5. Run `export ASPNETCORE_ENVIRONMENT=Development`
+6. Run `dotnet run`
+7. Browse to [https://localhost:5001](https://localhost:5001)
+
+### Test
+
+1. Run `cd ./tests/Lyfe.Tests`
+2. Run `dotnet test`
+
+### Migrations
+
+1. Run `cd ./src/Lyfe`
+2. Run `dotnet ef migrations add <migration_name>`
+3. Run `dotnet ef database update`
