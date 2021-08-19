@@ -3,7 +3,8 @@ import {Exercise} from "./Exercise";
 
 export interface User {
     id: string;
-    username: string;
+    givenName: string;
+    familyName: string;
     weights: Weight[];
     exercises: Exercise[];
 }
