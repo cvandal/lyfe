@@ -1,38 +1,24 @@
 import React, {Component} from "react";
-import {AuthState, OktaAuth} from "@okta/okta-auth-js";
+import {OktaAuth} from "@okta/okta-auth-js"
 import {User} from "../interfaces/User";
 import {DayOfWeek} from "../interfaces/Exercise";
+import Header from "./Header";
 import WeightTracker from "./WeightTracker"
 import WeightDifference from "./WeightDifference";
 import ExerciseTracker from "./ExerciseTracker";
 import {Get} from "../Repository";
 import {
-    AppBar,
-    Button,
     Container,
-    Divider,
-    Drawer,
     Grid,
-    IconButton,
-    List,
-    ListItem,
-    ListItemIcon,
-    ListItemText,
-    Toolbar,
     Typography
 } from "@material-ui/core";
-import DashboardIcon from "@material-ui/icons/Dashboard";
-import MenuIcon from "@material-ui/icons/Menu";
-import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
 
 interface Props {
     oktaAuth: OktaAuth;
-    authState: AuthState;
 }
 
 interface State {
-    user: User,
-    openDrawer: boolean
+    user: User
 }
 
 export default class Dashboard extends Component<Props, State> {
@@ -42,11 +28,11 @@ export default class Dashboard extends Component<Props, State> {
         this.state = {
             user: {
                 id: "",
-                username: "",
+                givenName: "",
+                familyName: "",
                 weights: [],
                 exercises: []
-            },
-            openDrawer: false
+            }
         };
     };
 
@@ -66,41 +52,10 @@ export default class Dashboard extends Component<Props, State> {
         this.loadData();
     }
 
-    toggleDrawer = () => {
-        this.state.openDrawer ?
-            this.setState({openDrawer: false}) :
-            this.setState({openDrawer: true});
-    };
-
     render () {
         return this.state.user.id ? (
             <div className="flex-grow-1">
-                <AppBar position="static" elevation={0}>
-                    <Toolbar>
-                        <IconButton color="inherit" onClick={this.toggleDrawer}>
-                            <MenuIcon />
-                        </IconButton>
-
-                        <Drawer anchor="left" open={this.state.openDrawer} onClose={this.toggleDrawer}>
-                            <List>
-                                <ListItem button>
-                                    <ListItemIcon><DashboardIcon color="inherit" /></ListItemIcon>
-                                    <ListItemText primary="Dashboard" />
-                                </ListItem>
-                                <ListItem button>
-                                    <ListItemIcon><PhotoCameraIcon  color="inherit" /></ListItemIcon>
-                                    <ListItemText primary="Photo Gallery (Coming Soon)" />
-                                </ListItem>
-                            </List>
-
-                            <Divider />
-                        </Drawer>
-
-                        <Typography className="flex-grow-1" variant="h6" color="inherit">Dashboard</Typography>
-
-                        <Button color="inherit" onClick={() => {this.props.oktaAuth.signOut()}}>Logout</Button>
-                    </Toolbar>
-                </AppBar>
+                <Header oktaAuth={this.props.oktaAuth} title={"Dashboard"} />
 
                 <Container maxWidth={false}>
                     <Grid container spacing={3}>
@@ -142,6 +97,6 @@ export default class Dashboard extends Component<Props, State> {
                     </Grid>
                 </Container>
             </div>
-        ): <Typography className="loading">Loading...</Typography>;
+        ) : <Typography className="loading">Loading...</Typography>;
     };
 };
