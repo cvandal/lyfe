@@ -37,6 +37,7 @@ export class Layout extends Component {
                 },
                 MuiDrawer: {
                     paper: {
+                        width: 240,
                         color: "#f8f8f2",
                         backgroundColor: "#282a36"
                     }
@@ -140,6 +141,11 @@ export class Layout extends Component {
                     alignCenter: {
                         color: "#f8f8f2",
                         borderBottom: "none"
+                    }
+                },
+                MuiSvgIcon: {
+                    colorSecondary: {
+                        color: "#44475a"
                     }
                 }
             },

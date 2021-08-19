@@ -4,6 +4,7 @@ import {OktaAuth, toRelativeUrl} from "@okta/okta-auth-js";
 import {LoginCallback, SecureRoute, Security} from "@okta/okta-react";
 import {Layout} from "./components/Layout";
 import Dashboard from "./components/Dashboard";
+import PhotoGallery from "./components/PhotoGallery";
 import Login from "./components/Login";
 import Logout from "./components/Logout";
 
@@ -40,12 +41,19 @@ export default withRouter(class App extends Component<Props, State> {
             <Security oktaAuth={this.oktaAuth} restoreOriginalUri={this.restoreOriginalUri} onAuthRequired={this.onAuthRequired}>
                 <Layout>
                     <SecureRoute exact path="/">
-                        <Dashboard oktaAuth={this.oktaAuth} authState={this.oktaAuth.authStateManager.getAuthState()} />
+                        <Dashboard oktaAuth={this.oktaAuth} />
                     </SecureRoute>
+
+                    <SecureRoute path="/gallery">
+                        <PhotoGallery oktaAuth={this.oktaAuth} />
+                    </SecureRoute>
+
                     <Route path="/login">
                         <Login oktaAuth={this.oktaAuth} authState={this.oktaAuth.authStateManager.getAuthState()} />
                     </Route>
+
                     <Route path="/login/callback" component={LoginCallback} />
+
                     <Route path="/logout">
                         <Logout oktaAuth={this.oktaAuth} />
                     </Route>

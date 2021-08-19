@@ -37,3 +37,12 @@ input[type=number] {
     align-items: center;
     height: 198px;
 }
+
+.upload-photos {
+    margin-top: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 99px;
+    transform: scale(4);
+}
