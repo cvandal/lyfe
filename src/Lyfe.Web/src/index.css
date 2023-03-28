@@ -1,0 +1,160 @@
+body {
+  background-color: #282a36;
+  color: #f8f8f2;
+}
+
+.loading {
+  color: #bd93f9;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.card {
+  background-color: #282a36;
+  border-color: #282a36;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 15px;
+  color: #f8f8f2;
+}
+
+.weight-difference {
+  align-items: center;
+  display: flex;
+  font-size: 4.8rem;
+  height: 350px;
+  justify-content: center;
+}
+
+.nav-link,
+.nav-link:active,
+.nav-link:focus {
+  color: #f8f8f2;
+  font-size: 2rem;
+  line-height: 0;
+  padding: 0;
+}
+
+@media (min-width: 576px) {
+  .nav-link,
+  .nav-link:active,
+  .nav-link:focus {
+    padding: 0 0 2.5rem 0.5rem;
+  }
+}
+
+.nav-link:hover {
+  color: #44475a;
+}
+
+.modal-body {
+  background-color: #282a36;
+}
+
+.form-control,
+.form-control:focus,
+.form-control:active {
+  background-color: #f8f8f2;
+  border-color: #282a36;
+  color: #282a36;
+}
+
+.form-control:focus {
+  box-shadow: none;
+}
+
+.form-control::placeholder {
+  color: #44475a;
+}
+
+.form-label {
+  color: #f8f8f2;
+}
+
+.form-select,
+.form-select:focus,
+.form-select:active {
+  background-color: #f8f8f2;
+  border-color: #282a36;
+  color: #282a36;
+}
+
+.form-select:focus {
+  box-shadow: none;
+}
+
+.btn-cancel,
+.btn-cancel:active,
+.btn-cancel:focus,
+.btn-cancel:hover {
+  background-color: #44475a !important;
+  border-color: #44475a !important;
+  color: #f8f8f2 !important;
+}
+
+.btn-submit,
+.btn-submit:active,
+.btn-submit:focus,
+.btn-submit:hover {
+  background-color: #bd93f9 !important;
+  border-color: #bd93f9 !important;
+  color: #282a36 !important;
+}
+
+.btn-add,
+.btn-trash {
+  background-color: inherit !important;
+  border: none !important;
+  color: #44475a !important;
+  font-size: 1.5rem !important;
+  line-height: 0 !important;
+  padding: 0 !important;
+}
+
+.btn-add:hover,
+.btn-edit:hover,
+.btn-trash:hover {
+  background-color: inherit !important;
+  color: #f8f8f2 !important;
+}
+
+.btn-edit {
+  background-color: inherit !important;
+  border: none !important;
+  color: #44475a !important;
+  font-size: 1rem !important;
+  line-height: 0 !important;
+  padding: 3px 0 0 0 !important;
+}
+
+.btn-edit:hover {
+  background-color: inherit !important;
+  color: #f8f8f2 !important;
+}
+
+.tooltip-inner {
+  background-color: #44475a;
+  color: #f8f8f2;
+}
+
+.tooltip.bs-tooltip-top .tooltip-arrow::before {
+  border-top-color: #44475a;
+}
+
+.table {
+  color: #f8f8f2;
+}
+
+.table th {
+  border-bottom: solid 1px #242631;
+  color: #bd93f9;
+}
+
+.table td {
+  border: none;
+  padding: 1.5rem;
+}
+
+.table tr:nth-child(odd) td {
+  background-color: #242631;
+}
