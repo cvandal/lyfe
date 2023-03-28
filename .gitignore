@@ -1,8 +1,7 @@
 .idea
-Lyfe.sln.DotSettings.user
+.vscode
 **/bin
 **/obj
 **/appsettings.Development.json
-src/Lyfe/Lyfe.db
-src/Lyfe/ClientApp/build
-src/Lyfe/ClientApp/node_modules
+src/Lyfe.Web/node_modules
+Lyfe.sln.DotSettings.user
