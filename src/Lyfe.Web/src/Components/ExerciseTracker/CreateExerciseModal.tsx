@@ -4,7 +4,12 @@ import { Button, Form, Modal } from "react-bootstrap";
 import { Exercise, CreateExerciseModalProps } from "../../Interfaces/Exercise";
 import { postRecord } from "../../Repository";
 
-function CreateExerciseModal({day, show, setShow, reload}: CreateExerciseModalProps) {
+function CreateExerciseModal({
+  day,
+  show,
+  setShow,
+  reload,
+}: CreateExerciseModalProps) {
   const [name, setName] = useState("");
   const [weight, setWeight] = useState(0);
   const [reps, setReps] = useState(0);
@@ -14,7 +19,9 @@ function CreateExerciseModal({day, show, setShow, reload}: CreateExerciseModalPr
 
   const handleClose = () => setShow(false);
 
-  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleSubmit = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     e.preventDefault();
 
     const token = await getAccessTokenSilently();
@@ -23,7 +30,7 @@ function CreateExerciseModal({day, show, setShow, reload}: CreateExerciseModalPr
       name: name,
       weight: weight,
       reps: reps,
-      sets: sets
+      sets: sets,
     };
 
     await postRecord("http://167.179.146.115:5000/api/exercise", token, body);
@@ -36,7 +43,7 @@ function CreateExerciseModal({day, show, setShow, reload}: CreateExerciseModalPr
     <Modal show={show} onHide={handleClose} centered={true}>
       <Modal.Body>
         <Modal.Title className="mb-3">Add Exercise</Modal.Title>
-        
+
         <Form>
           <Form.Group>
             <Form.Label>Name</Form.Label>
@@ -75,8 +82,12 @@ function CreateExerciseModal({day, show, setShow, reload}: CreateExerciseModalPr
           </Form.Group>
 
           <Form.Group className="d-flex justify-content-end">
-            <Button className="btn-cancel me-3" onClick={handleClose}>Close</Button>
-            <Button className="btn-submit" onClick={handleSubmit} type="submit">Submit</Button>
+            <Button className="btn-cancel me-3" onClick={handleClose}>
+              Close
+            </Button>
+            <Button className="btn-submit" onClick={handleSubmit} type="submit">
+              Submit
+            </Button>
           </Form.Group>
         </Form>
       </Modal.Body>

@@ -5,7 +5,12 @@ import { Trash3Fill } from "react-bootstrap-icons";
 import { Exercise, UpdateExerciseModalProps } from "../../Interfaces/Exercise";
 import { deleteRecord, patchRecord } from "../../Repository";
 
-function UpdateExerciseModal({exercise, show, setShow, reload}: UpdateExerciseModalProps) {
+function UpdateExerciseModal({
+  exercise,
+  show,
+  setShow,
+  reload,
+}: UpdateExerciseModalProps) {
   const [name, setName] = useState(exercise.name);
   const [weight, setWeight] = useState(exercise.weight);
   const [reps, setReps] = useState(exercise.reps);
@@ -15,7 +20,9 @@ function UpdateExerciseModal({exercise, show, setShow, reload}: UpdateExerciseMo
 
   const handleClose = () => setShow(false);
 
-  const handleUpdate = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleUpdate = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     e.preventDefault();
 
     const token = await getAccessTokenSilently();
@@ -25,10 +32,14 @@ function UpdateExerciseModal({exercise, show, setShow, reload}: UpdateExerciseMo
       name: name,
       weight: weight,
       reps: reps,
-      sets: sets
+      sets: sets,
     };
 
-    await patchRecord(`http://167.179.146.115:5000/api/exercise/${exercise.id}`, token, body);
+    await patchRecord(
+      `http://167.179.146.115:5000/api/exercise/${exercise.id}`,
+      token,
+      body
+    );
 
     handleClose();
     reload();
@@ -37,23 +48,27 @@ function UpdateExerciseModal({exercise, show, setShow, reload}: UpdateExerciseMo
   const handleDelete = async () => {
     const token = await getAccessTokenSilently();
 
-    await deleteRecord(`http://167.179.146.115:5000/api/exercise/${exercise.id}`, token);
+    await deleteRecord(
+      `http://167.179.146.115:5000/api/exercise/${exercise.id}`,
+      token
+    );
 
     handleClose();
     reload();
-  }
+  };
 
   return (
     <Modal show={show} onHide={handleClose} centered={true}>
       <Modal.Body>
         <Modal.Title className="mb-3">
           Update Exercise
-
           <OverlayTrigger
             key="top"
             placement="top"
             overlay={
-              <Tooltip className="tooltip" id="top">Delete Exercise</Tooltip>
+              <Tooltip className="tooltip" id="top">
+                Delete Exercise
+              </Tooltip>
             }
           >
             <Button className="btn-trash float-end" onClick={handleDelete}>
@@ -61,7 +76,7 @@ function UpdateExerciseModal({exercise, show, setShow, reload}: UpdateExerciseMo
             </Button>
           </OverlayTrigger>
         </Modal.Title>
-        
+
         <Form>
           <Form.Group>
             <Form.Label>Name</Form.Label>
@@ -104,8 +119,12 @@ function UpdateExerciseModal({exercise, show, setShow, reload}: UpdateExerciseMo
           </Form.Group>
 
           <Form.Group className="d-flex justify-content-end">
-            <Button className="btn-cancel me-3" onClick={handleClose}>Close</Button>
-            <Button className="btn-submit" onClick={handleUpdate} type="submit">Update</Button>
+            <Button className="btn-cancel me-3" onClick={handleClose}>
+              Close
+            </Button>
+            <Button className="btn-submit" onClick={handleUpdate} type="submit">
+              Update
+            </Button>
           </Form.Group>
         </Form>
       </Modal.Body>

@@ -16,7 +16,7 @@ root.render(
       clientId="7sauZ5oevh5GRU0AfHGbK6TaTSTMwpaE"
       authorizationParams={{
         redirect_uri: window.location.origin,
-        audience: "https://cvd.au.auth0.com/api/v2/"
+        audience: "https://cvd.au.auth0.com/api/v2/",
       }}
       useRefreshTokens={true}
       cacheLocation="localstorage"

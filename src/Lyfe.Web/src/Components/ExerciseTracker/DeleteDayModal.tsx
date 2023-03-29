@@ -3,12 +3,14 @@ import { Button, Form, Modal } from "react-bootstrap";
 import { DeleteDayModalProps } from "../../Interfaces/Day";
 import { deleteRecord } from "../../Repository";
 
-function DeleteDayModal({day, show, setShow, reload}: DeleteDayModalProps) {
+function DeleteDayModal({ day, show, setShow, reload }: DeleteDayModalProps) {
   const { getAccessTokenSilently } = useAuth0();
 
   const handleClose = () => setShow(false);
 
-  const handleDelete = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleDelete = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     e.preventDefault();
 
     const token = await getAccessTokenSilently();
@@ -28,8 +30,12 @@ function DeleteDayModal({day, show, setShow, reload}: DeleteDayModalProps) {
 
         <Form>
           <Form.Group className="d-flex justify-content-end">
-            <Button className="btn-cancel me-3" onClick={handleClose}>Close</Button>
-            <Button className="btn-submit" onClick={handleDelete} type="submit">Delete</Button>
+            <Button className="btn-cancel me-3" onClick={handleClose}>
+              Close
+            </Button>
+            <Button className="btn-submit" onClick={handleDelete} type="submit">
+              Delete
+            </Button>
           </Form.Group>
         </Form>
       </Modal.Body>
