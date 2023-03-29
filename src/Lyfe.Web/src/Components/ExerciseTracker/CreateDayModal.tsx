@@ -4,7 +4,7 @@ import { Button, Form, Modal } from "react-bootstrap";
 import { Day, CreateDayModalProps } from "../../Interfaces/Day";
 import { postRecord } from "../../Repository";
 
-function CreateDayModal({show, setShow, reload}: CreateDayModalProps) {
+function CreateDayModal({ show, setShow, reload }: CreateDayModalProps) {
   const [name, setName] = useState("Monday");
   const [description, setDescription] = useState("");
 
@@ -12,13 +12,15 @@ function CreateDayModal({show, setShow, reload}: CreateDayModalProps) {
 
   const handleClose = () => setShow(false);
 
-  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleSubmit = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     e.preventDefault();
 
     const token = await getAccessTokenSilently();
     const body: Day = {
       name: name,
-      description: description
+      description: description,
     };
 
     await postRecord("http://167.179.146.115:5000/api/day", token, body);
@@ -35,7 +37,10 @@ function CreateDayModal({show, setShow, reload}: CreateDayModalProps) {
         <Form>
           <Form.Group>
             <Form.Label>Day</Form.Label>
-            <Form.Select className="mb-3" onChange={(e) => setName(e.target.value)}>
+            <Form.Select
+              className="mb-3"
+              onChange={(e) => setName(e.target.value)}
+            >
               <option value="Monday">Monday</option>
               <option value="Tuesday">Tuesday</option>
               <option value="Wednesday">Wednesday</option>
@@ -56,8 +61,12 @@ function CreateDayModal({show, setShow, reload}: CreateDayModalProps) {
           </Form.Group>
 
           <Form.Group className="d-flex justify-content-end">
-            <Button className="btn-cancel me-3" onClick={handleClose}>Close</Button>
-            <Button className="btn-submit" onClick={handleSubmit} type="submit">Submit</Button>
+            <Button className="btn-cancel me-3" onClick={handleClose}>
+              Close
+            </Button>
+            <Button className="btn-submit" onClick={handleSubmit} type="submit">
+              Submit
+            </Button>
           </Form.Group>
         </Form>
       </Modal.Body>

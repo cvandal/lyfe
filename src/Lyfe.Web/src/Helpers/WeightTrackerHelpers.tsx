@@ -10,9 +10,9 @@ export function dateFormatter(d: Date) {
 
 export function dataFormatter(w: Weight[]) {
   return w.map((weight) => ({
-    "Date": dateFormatter(weight.currentDate),
-    "Weight": weight.currentWeight,
-    "Goal Weight": weight.goalWeight
+    Date: dateFormatter(weight.currentDate),
+    Weight: weight.currentWeight,
+    "Goal Weight": weight.goalWeight,
   }));
 }
 
@@ -21,7 +21,7 @@ export function latestRecord(w: Weight[]) {
 }
 
 export function minValue(w: Weight[]) {
-  return Math.min(...w.map((weight) => weight.goalWeight)) - 2;;
+  return Math.min(...w.map((weight) => weight.goalWeight)) - 2;
 }
 
 export function maxValue(w: Weight[]) {
@@ -29,5 +29,7 @@ export function maxValue(w: Weight[]) {
 }
 
 export function diff(w: Weight[]) {
-  return (latestRecord(w)!.currentWeight - latestRecord(w)!.goalWeight).toFixed(2);
+  return (latestRecord(w)!.currentWeight - latestRecord(w)!.goalWeight).toFixed(
+    2
+  );
 }
