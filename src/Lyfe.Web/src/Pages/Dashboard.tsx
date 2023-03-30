@@ -9,7 +9,7 @@ function Dashboard() {
   const [showCreateDayModal, setShowCreateDayModal] = useState(false);
 
   return (
-    <Container fluid={true}>
+    <Container fluid>
       <Row>
         <Col md="auto" className="mt-4">
           <Sidebar

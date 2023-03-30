@@ -118,10 +118,7 @@ function WeightTracker({
                       tick={{ fill: "#44475a" }}
                       tickLine={false}
                     />
-                    <YAxis
-                      domain={[minValue(data!), maxValue(data!)]}
-                      hide={true}
-                    />
+                    <YAxis domain={[minValue(data!), maxValue(data!)]} hide />
 
                     <Area
                       dataKey="Weight"

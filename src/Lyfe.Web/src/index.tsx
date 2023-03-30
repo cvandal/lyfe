@@ -18,7 +18,7 @@ root.render(
         redirect_uri: window.location.origin,
         audience: "https://cvd.au.auth0.com/api/v2/",
       }}
-      useRefreshTokens={true}
+      useRefreshTokens
       cacheLocation="localstorage"
     >
       <App />
