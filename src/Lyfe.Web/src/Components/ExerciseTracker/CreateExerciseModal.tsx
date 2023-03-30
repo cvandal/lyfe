@@ -40,7 +40,7 @@ function CreateExerciseModal({
   };
 
   return (
-    <Modal show={show} onHide={handleClose} centered={true}>
+    <Modal show={show} onHide={handleClose} centered>
       <Modal.Body>
         <Modal.Title className="mb-3">Add Exercise</Modal.Title>
 

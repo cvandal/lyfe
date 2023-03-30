@@ -120,7 +120,7 @@ function WeightTracker({
                     />
                     <YAxis
                       domain={[minValue(data!), maxValue(data!)]}
-                      hide={true}
+                      hide
                     />
 
                     <Area

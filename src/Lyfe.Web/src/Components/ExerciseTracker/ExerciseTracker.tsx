@@ -107,7 +107,7 @@ function ExerciseTracker({
 
                   <p>{day.description}</p>
 
-                  <Table className="mb-0" responsive={true}>
+                  <Table className="mb-0" responsive>
                     <thead>
                       <tr>
                         <th>Name</th>
